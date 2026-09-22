@@ -1,0 +1,212 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --color-phosphor: var(--phosphor);
+  --color-cyan: var(--cyan);
+  --color-magenta: var(--magenta);
+  --color-grid: var(--grid);
+
+  --font-display: var(--font-orbitron);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+
+  /* Dark charcoal base with a faint warm/blue tint */
+  --background: oklch(0.16 0.006 260);
+  --foreground: oklch(0.92 0.015 85);
+
+  --card: oklch(0.2 0.008 262);
+  --card-foreground: oklch(0.92 0.015 85);
+  --popover: oklch(0.18 0.008 262);
+  --popover-foreground: oklch(0.92 0.015 85);
+
+  /* Phosphor amber — the primary retro accent */
+  --primary: oklch(0.8 0.15 74);
+  --primary-foreground: oklch(0.18 0.03 74);
+
+  --secondary: oklch(0.26 0.01 262);
+  --secondary-foreground: oklch(0.92 0.015 85);
+
+  --muted: oklch(0.24 0.008 262);
+  --muted-foreground: oklch(0.62 0.012 262);
+
+  --accent: oklch(0.28 0.012 262);
+  --accent-foreground: oklch(0.92 0.015 85);
+
+  --destructive: oklch(0.62 0.2 22);
+
+  --border: oklch(0.32 0.01 262 / 55%);
+  --input: oklch(0.3 0.01 262 / 60%);
+  --ring: oklch(0.8 0.15 74 / 60%);
+
+  /* Retro accent palette */
+  --phosphor: oklch(0.8 0.15 74);
+  --cyan: oklch(0.78 0.11 200);
+  --magenta: oklch(0.68 0.16 355);
+  --grid: oklch(0.4 0.01 262 / 22%);
+
+  --chart-1: oklch(0.8 0.15 74);
+  --chart-2: oklch(0.78 0.11 200);
+  --chart-3: oklch(0.68 0.16 355);
+  --chart-4: oklch(0.6 0.01 262);
+  --chart-5: oklch(0.45 0.01 262);
+
+  --sidebar: oklch(0.18 0.007 262);
+  --sidebar-foreground: oklch(0.88 0.015 85);
+  --sidebar-primary: oklch(0.8 0.15 74);
+  --sidebar-primary-foreground: oklch(0.18 0.03 74);
+  --sidebar-accent: oklch(0.26 0.01 262);
+  --sidebar-accent-foreground: oklch(0.92 0.015 85);
+  --sidebar-border: oklch(0.32 0.01 262 / 55%);
+  --sidebar-ring: oklch(0.8 0.15 74 / 60%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    /* Fine grid pattern over the charcoal base */
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-attachment: fixed;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-orbitron), sans-serif;
+}
+@utility font-mono {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+/* ---- Retro-futuristic surface utilities ---- */
+
+/* CRT scanline overlay — apply to a full-bleed fixed element */
+@utility crt-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    oklch(0 0 0 / 0%) 0px,
+    oklch(0 0 0 / 0%) 2px,
+    oklch(0 0 0 / 14%) 3px,
+    oklch(0 0 0 / 14%) 4px
+  );
+}
+
+/* Panel with subtle inner glow + border */
+@utility panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 4%),
+    0 1px 2px 0 oklch(0 0 0 / 40%);
+}
+
+@utility text-glow-phosphor {
+  text-shadow: 0 0 8px oklch(0.8 0.15 74 / 45%), 0 0 2px oklch(0.8 0.15 74 / 60%);
+}
+@utility text-glow-cyan {
+  text-shadow: 0 0 8px oklch(0.78 0.11 200 / 45%);
+}
+@utility box-glow-phosphor {
+  box-shadow: 0 0 0 1px oklch(0.8 0.15 74 / 40%), 0 0 18px 0 oklch(0.8 0.15 74 / 22%);
+}
+
+/* ---- Animations ---- */
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.42; }
+  92% { opacity: 0.5; }
+  94% { opacity: 0.36; }
+  96% { opacity: 0.5; }
+}
+.animate-crt-flicker { animation: crt-flicker 6s infinite ease-in-out; }
+
+@keyframes eq-bounce {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes marquee-x {
+  from { background-position: 0 0; }
+  to { background-position: 44px 0; }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.8 0.15 74 / 45%); }
+  70% { box-shadow: 0 0 0 8px oklch(0.8 0.15 74 / 0%); }
+  100% { box-shadow: 0 0 0 0 oklch(0.8 0.15 74 / 0%); }
+}
+.animate-pulse-ring { animation: pulse-ring 2.2s infinite; }
+
+@keyframes sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}
+.animate-sweep { animation: sweep 1.8s linear infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.5s ease-out both; }
+
+/* Custom scrollbar for the workstation feel */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
